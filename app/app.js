@@ -10,10 +10,29 @@ app.use(express.static("static"));
 // Get the functions in the db.js file to use
 const db = require('./services/db');
 
-// Create a route for root - /
+// Create a route for root - / TEST
 app.get("/", function(req, res) {
-    res.send("Hello world! Natheem");
+    res.send("Hello world! Natheem is Married");
 });
+
+//1. Displaying All Runners 
+// This route handles requests for displaying all runners
+app.get("/all-runners", function (req, res) {
+    res.send("Users Page Test - Display All Runners ")
+
+    // SQL query to select all runners from the 'users' table
+    var sql = 'select * from users';
+
+    // Call the 'query' method of the database connection object to execute the SQL query
+    db.query(sql).then(results => {
+        console.log(results);
+
+        // Send the results as a JSON response to the client
+        res.json(results);
+    });
+
+});
+
 
 // Create a route for testing the db
 app.get("/db_test", function(req, res) {
