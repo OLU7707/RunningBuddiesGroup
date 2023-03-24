@@ -13,6 +13,10 @@ const db = require('./services/db');
 // creating a connection to your database: 
 const mysql = require('mysql');
 
+// Use the Pug templating engine
+app.set( 'view engine', 'pug');
+app.set( 'views', './app/views');
+
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'runningbuddiesgroup',
@@ -35,8 +39,9 @@ app.get("/all-runners", function (req, res) {
     // Call the 'query' method of the database connection object to execute the SQL query
     db.query(sql).then(results => {
         console.log(results);
-        // Send the results as a JSON response to the client
-        res.json(results);
+        // Passing the data to Pug template
+        res.render('all-users', { users: results });
+    
     });
 });
 
