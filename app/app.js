@@ -12,7 +12,7 @@ const db = require('./services/db');
 
 // Create a route for root - / TEST
 app.get("/", function(req, res) {
-    res.send("Hello world! Natheem is Married");
+    res.send("Hello world! Natheem ");
 });
 
 //1. Displaying All Runners 
