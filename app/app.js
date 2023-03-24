@@ -10,7 +10,7 @@ app.use(express.static("static"));
 // Get the functions in the db.js file to use
 const db = require('./services/db');
 
-//
+// creating a connection to your database: 
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
@@ -30,18 +30,30 @@ app.get("/", function(req, res) {
 // This route handles requests for displaying all runners
 app.get("/all-runners", function (req, res) {
     //res.send("Users Page Test - Display All Runners ")
-
     // SQL query to select all runners from the 'users' table
     var sql = 'select user_ID, user_name from users';
-
     // Call the 'query' method of the database connection object to execute the SQL query
     db.query(sql).then(results => {
         console.log(results);
-
         // Send the results as a JSON response to the client
         res.json(results);
     });
+});
 
+//Display a formatted list - All Runners
+app.get("/all-runner-formatted", function(req, res) {
+    var sql = 'select user_ID, user_name from users';
+    var output = '<table border="1px">'
+    db.query(sql).then(results => {
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.user_ID + '</td>';
+            output += '<td>' + '<a href="./single-runner/' + row.user_ID + '">' + row.user_name +  '</a>' + '</td>';
+            output += '</tr>'
+        }
+        output+= '</table>';
+        res.send(output);
+    });
 });
 
 
