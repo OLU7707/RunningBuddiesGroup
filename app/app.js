@@ -10,6 +10,17 @@ app.use(express.static("static"));
 // Get the functions in the db.js file to use
 const db = require('./services/db');
 
+//
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'runningbuddiesgroup',
+  password : 'password',
+  database : 'sw2-runningbuddies'
+});
+
+
 // Create a route for root - / TEST
 app.get("/", function(req, res) {
     res.send("Hello world! Natheem ");
@@ -18,7 +29,7 @@ app.get("/", function(req, res) {
 //1. Displaying All Runners 
 // This route handles requests for displaying all runners
 app.get("/all-runners", function (req, res) {
-    res.send("Users Page Test - Display All Runners ")
+    //res.send("Users Page Test - Display All Runners ")
 
     // SQL query to select all runners from the 'users' table
     var sql = 'select user_ID, user_name from users';
