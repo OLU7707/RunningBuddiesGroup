@@ -56,6 +56,28 @@ app.get("/all-runner-formatted", function(req, res) {
     });
 });
 
+//Display single runner page with asynchronous fucntion
+//that waits for the response.
+app.get("/single-runner/:user_ID", function(req, res) {
+    var ruID = req.params.user_ID;
+    var ruSql = "SELECT user_city, user_street, user_age, \
+    user_gender, user_FitnessLevel FROM users\
+    WHERE user_ID = ?"
+    db.query(ruSql, [ruID]).then(results => {
+        console.log(results);
+        //res.send(ruID);
+        output = '';
+        output += '<div><b>City Location: </b>' + results[0].user_city + '</div>';
+        output += '<div><b>Street Location: </b>' + results[0].user_street + '</div>';
+        output += '<div><b>Age: </b>' +  results[0].user_age + '</div>';
+        output += '<div><b>Gender: </b>' + results[0].user_gender + '</div>';
+        output += '<div><b>Fitness Level: </b>' + results[0].user_FitnessLevel + '</div>';
+        res.send(output);
+
+    });
+
+});
+
 
 // Create a route for testing the db
 app.get("/db_test", function(req, res) {
