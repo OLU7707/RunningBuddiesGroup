@@ -21,7 +21,7 @@ app.get("/all-runners", function (req, res) {
     res.send("Users Page Test - Display All Runners ")
 
     // SQL query to select all runners from the 'users' table
-    var sql = 'select * from users';
+    var sql = 'select user_ID, user_name from users';
 
     // Call the 'query' method of the database connection object to execute the SQL query
     db.query(sql).then(results => {
