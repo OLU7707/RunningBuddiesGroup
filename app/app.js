@@ -56,7 +56,7 @@ app.get("/all-runner-formatted", function(req, res) {
             output += '</tr>'
         }
         output+= '</table>';
-        res.send(output);
+        res.render('index', { runnersOutput: output });
     });
 });
 
