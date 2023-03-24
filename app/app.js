@@ -39,9 +39,8 @@ app.get("/all-runners", function (req, res) {
     // Call the 'query' method of the database connection object to execute the SQL query
     db.query(sql).then(results => {
         console.log(results);
-        // Passing the data to Pug template
-        res.render('all-users', { users: results });
-    
+        // Send the results as a JSON response to the client
+        res.json(results);
     });
 });
 
