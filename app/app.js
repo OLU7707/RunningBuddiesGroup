@@ -27,7 +27,7 @@ const connection = mysql.createConnection({
 
 // Create a route for root - / TEST
 app.get("/", function(req, res) {
-    res.send("Hello world! Natheem ");
+    res.send("Index");
 });
 
 //1. Displaying All Runners 
@@ -63,20 +63,14 @@ app.get("/all-runner-formatted", function(req, res) {
 //Display single runner page with asynchronous fucntion
 //that waits for the response.
 app.get("/single-runner/:user_ID", function(req, res) {
-    var ruID = req.params.user_ID;
-    var ruSql = "SELECT user_city, user_street, user_age, \
+    var UserID = req.params.user_ID;
+    var sql = "SELECT user_city, user_street, user_age, \
     user_gender, user_FitnessLevel FROM users\
     WHERE user_ID = ?"
-    db.query(ruSql, [ruID]).then(results => {
+    db.query(sql, [UserID]).then(results => {
         console.log(results);
-        //res.send(ruID);
-        output = '';
-        output += '<div><b>City Location: </b>' + results[0].user_city + '</div>';
-        output += '<div><b>Street Location: </b>' + results[0].user_street + '</div>';
-        output += '<div><b>Age: </b>' +  results[0].user_age + '</div>';
-        output += '<div><b>Gender: </b>' + results[0].user_gender + '</div>';
-        output += '<div><b>Fitness Level: </b>' + results[0].user_FitnessLevel + '</div>';
-        res.send(output);
+        // Pass the results object to the Pug template
+        res.render('users', { users: results[0] });
 
     });
 
