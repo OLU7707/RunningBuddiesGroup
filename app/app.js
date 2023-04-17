@@ -39,7 +39,7 @@ app.get("/all-runners", function (req, res) {
     // Call the 'query' method of the database connection object to execute the SQL query
     db.query(sql).then(results => {
         console.log(results);
-        // Send the results as a JSON response to the client
+        // Send the results as a JSON response to the client.
         res.json(results);
     });
 });
