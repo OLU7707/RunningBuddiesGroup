@@ -17,6 +17,9 @@ const mysql = require('mysql');
 app.set( 'view engine', 'pug');
 app.set( 'views', './app/views');
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'runningbuddiesgroup',
@@ -59,6 +62,26 @@ app.get("/all-runner-formatted", function(req, res) {
         res.send(output);
     });
 });
+
+app.get("/match-user", function(req, res) {
+    var sql = 'SELECT DISTINCT user_city FROM users';
+    db.query(sql).then(results => {
+      // Pass the results to the Pug template
+      res.render('match-user', { cities: results });
+    });
+  });
+  
+  // Route to handle the form submission
+  app.post("/match-user", function(req, res) {
+    var city = req.body.user_city;
+    var sql = "SELECT * FROM users WHERE user_city = ?";
+    db.query(sql, [city]).then(results => {
+      // Pass the results to the Pug template
+      res.render('matched-user', { users: results });
+    });
+  });
+
+
 
 //Display single runner page with asynchronous fucntion
 //that waits for the response.

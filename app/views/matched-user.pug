@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Matched Users
+
+  if users.length
+    table.table
+      thead
+        tr
+          th User ID
+          th Name
+          th Age
+          th Gender
+          th Fitness Level
+          th City
+          th Street
+      tbody
+        each user in users
+          tr
+            td= user.user_ID
+            td= user.user_name
+            td= user.user_age
+            td= user.user_gender
+            td= user.user_FitnessLevel
+            td= user.user_city
+            td= user.user_street

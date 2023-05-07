@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Match Users by City
+  form(action="/match-user" method="post")
+    label(for="user_city") City:
+    select(name="user_city")
+      each city in cities
+        option(value=city.user_city)= city.user_city
+    button(type="submit") Submit
