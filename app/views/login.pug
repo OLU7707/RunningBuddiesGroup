@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Login Page
+    link(rel="stylesheet", href="style.css")
+    body(style="background-color: #48D1CC;")
+  body
+    header
+      h1(style="color: white;")  Login
+      a(href="homepage")(style="color: white;")  Home
+      h2 
+    main
+      form(action="/login", method="POST")
+        label(for="email")(style="color: white;")  Email:
+        input(type="email", id="email", name="email", required)
+        label(for="password")(style="color: white;")  Password:
+        input(type="password", id="password", name="password", required)
+        button(type="submit") Login
+        //p Don't have an account? 
+        //a(href="/signup") Sign up now!
+    footer
+      p(style="color: white;")  Copyright © 2023 Running Buddies.
+
+

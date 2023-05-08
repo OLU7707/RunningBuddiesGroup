@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1(style="color: white;")  Matched Users
+  a(href="homepage")(style="color: white;")  Home
+  body(style="background-color: #48D1CC;")
+  p
+  p
+
+  if users.length
+    table.table(style="color: white;") 
+      thead
+        tr
+          th User ID
+          th Name
+          th Age
+          th Gender
+          th Fitness Level
+          th City
+          th Street
+      tbody
+        each user in users
+          tr
+            td= user.user_ID
+            td= user.user_name
+            td= user.user_age
+            td= user.user_gender
+            td= user.user_FitnessLevel
+            td= user.user_city
+            td= user.user_street

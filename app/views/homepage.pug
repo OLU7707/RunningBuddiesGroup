@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Running Buddies | Home
+    link(rel="stylesheet", href="style.css")
+  body(style="background-color: #48D1CC;")
+  
+    header.center 
+      h1(style="color: white;") Running Buddies
+      nav
+        ul
+          li
+            a(href="#")(style="color: white;") Home
+          li 
+            a(href="Login")(style="color: white;") Login   
+          li
+            a(href="all-runners-formatted")(style="color: white;") Find Runners 
+    main
+      section.hero
+        h2(style="color: white;") We Run Together
+        p(style="color: white;") Join our community of runners and find your perfect running buddy today!
+        a.button(href="all-runners-formatted")(style="color: white;") Join Now
+      section.about#about
+        h2(style="color: white;") About Us
+        p(style="color: white;") We are a group of passionate runners who have come together to support and motivate each other towards our running goals. Whether you're a beginner or a seasoned pro, we welcome runners of all levels!
+      section.contact#contact
+        h2(style="color: white;") Contact Us
+        p(style="color: white;") Have a question or feedback for us? Drop us a message using the form below:
+        form(action="/contact", method="POST")
+          label(for="name")(style="color: white;") Name:
+          input(type="text", id="name", name="name", required)
+          label(for="email")(style="color: white;") Email:
+          input(type="email", id="email", name="email", required)
+          label(for="message")(style="color: white;") Message:
+          textarea(id="message", name="message", required)
+          button(type="submit") Send Message
+    footer
+      p(style="color: white;") Copyright © 2023 Running Buddies.
+    

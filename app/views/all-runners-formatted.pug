@@ -1,0 +1,17 @@
+extends layout
+block content
+    - console.log(data)
+    .main-content 
+    body(style="background-color: #48D1CC;")
+    h1(style="color: white;")  All Runners - RUNNING BUDDIES 
+    a(href="homepage")(style="color: white;")  Home
+    h2(style="color: white;")  We Run Together
+        p(style="color: white;")  Join our community of runners and find your perfect running buddy today!
+        a.button(href="match-user")(style="color: white;")  Run With Us 
+    table(border=1)(style="color: white;") 
+        for item in data 
+            tr  
+                td #{item.user_ID}
+                td 
+                    a(href='/single-runner/' + item.user_ID) #{item.user_name}
+                  
