@@ -85,26 +85,6 @@ app.get("/all-runners-formatted", function(req, res) {
     });
 });
 
-app.get("/match-user", function(req, res) {
-    var sql = 'SELECT DISTINCT user_city FROM users';
-    db.query(sql).then(results => {
-      // Pass the results to the Pug template
-      res.render('match-user', { cities: results });
-    });
-  });
-  
-  // Route to handle the form submission
-  app.post("/match-user", function(req, res) {
-    var city = req.body.user_city;
-    var sql = "SELECT * FROM users WHERE user_city = ?";
-    db.query(sql, [city]).then(results => {
-      // Pass the results to the Pug template
-      res.render('matched-user', { users: results });
-    });
-  });
-
-
-
 //Display single runner page with asynchronous fucntion
 //that waits for the response.
 //app.get("/single-runner/:user_ID", function(req, res) {
@@ -122,21 +102,6 @@ app.get("/match-user", function(req, res) {
         //output += '<div><b>Gender: </b>' + results[0].user_gender + '</div>';
         //output += '<div><b>Fitness Level: </b>' + results[0].user_FitnessLevel + '</div>';
         //res.send(output);
-
-app.get("/single-runner/:user_ID", function(req, res) {
-    var UserID = req.params.user_ID;
-    var sql = "SELECT user_city, user_street, user_age, \
-    user_gender, user_FitnessLevel FROM users\
-    WHERE user_ID = ?"
-    db.query(sql, [UserID]).then(results => {
-        console.log(results);
-        // Pass the results object to the Pug template
-        res.render('users', { users: results[0] });
-
-
-    });
-
-});
 
 // Display single runner page with asynchronous fucntion that waits for the response (REFACTORED).
 // Display single runner page for each user.
