@@ -3,10 +3,11 @@ extends layout
 block content
   h1(style="color: white;")  Matched Users
   a(href="homepage")(style="color: white;")  Home
+  h2
+  a(href="match-user")(style="color: white;")  Previous page 
   body(style="background-color: #48D1CC;")
   p
   p
-
   if users.length
     table.table(style="color: white;") 
       thead
