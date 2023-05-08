@@ -1,7 +1,6 @@
 extends layout
 
 block content
-<<<<<<< HEAD
   h1(style="color: white;")  Match Users by City
   body(style="background-color: #48D1CC;")
   a(href="homepage")(style="color: white;")  Home
@@ -12,12 +11,3 @@ block content
       each city in cities
         option(value=city.user_city)= city.user_city
     button(type="submit") Submit
-=======
-  h1 Match Users by City
-  form(action="/match-user" method="post")
-    label(for="user_city") City:
-    select(name="user_city")
-      each city in cities
-        option(value=city.user_city)= city.user_city
-    button(type="submit") Submit
->>>>>>> origin/main
