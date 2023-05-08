@@ -17,7 +17,6 @@ const mysql = require('mysql');
 app.set( 'view engine', 'pug');
 app.set( 'views', './app/views');
 
-<<<<<<< HEAD
 //This will allow you to access the form data in the req.body object.
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,16 +27,6 @@ app.get("/", function(req, res) {
     var test_data = ['one', 'two', 'three', 'four'];
     // Send the array through to the template as a variable called data
     res.render("index", {'title':'My index page', 'heading':'My heading', 'data':test_data});
-=======
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'runningbuddiesgroup',
-  password : 'password',
-  database : 'sw2-runningbuddies'
->>>>>>> origin/main
 });
 
 // Running Buddies Homepage root
@@ -45,15 +34,15 @@ app.get("/homepage", function(req, res) {
     res.render("homepage")
 });
 
-<<<<<<< HEAD
-// Runing Buddies Login page root
+// Running Buddies Login page root
 app.get("/Login", function(req, res) {
     res.render("login")
-=======
+});
+
 // Create a route for root - / TEST
 app.get("/", function(req, res) {
     res.send("Index");
->>>>>>> origin/main
+
 });
 
 //1. Displaying All Runners 
@@ -118,7 +107,6 @@ app.get("/match-user", function(req, res) {
 
 //Display single runner page with asynchronous fucntion
 //that waits for the response.
-<<<<<<< HEAD
 //app.get("/single-runner/:user_ID", function(req, res) {
     //var ruID = req.params.user_ID;
     //var ruSql = "SELECT user_city, user_street, user_age, \
@@ -134,7 +122,7 @@ app.get("/match-user", function(req, res) {
         //output += '<div><b>Gender: </b>' + results[0].user_gender + '</div>';
         //output += '<div><b>Fitness Level: </b>' + results[0].user_FitnessLevel + '</div>';
         //res.send(output);
-=======
+
 app.get("/single-runner/:user_ID", function(req, res) {
     var UserID = req.params.user_ID;
     var sql = "SELECT user_city, user_street, user_age, \
@@ -144,11 +132,11 @@ app.get("/single-runner/:user_ID", function(req, res) {
         console.log(results);
         // Pass the results object to the Pug template
         res.render('users', { users: results[0] });
->>>>>>> origin/main
 
-    //});
 
-//});
+    });
+
+});
 
 // Display single runner page with asynchronous fucntion that waits for the response (REFACTORED).
 // Display single runner page for each user.
@@ -178,9 +166,6 @@ app.get("/single-runner/:user_ID", async function(req, res) {
       res.render('matched-user', { users: results });
     });
   });
-  
-
-
 
 
 // Create a route for testing the db
