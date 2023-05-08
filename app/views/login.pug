@@ -10,9 +10,11 @@ html(lang="en")
     header
       h1(style="color: white;")  Login
       a(href="homepage")(style="color: white;")  Home
+      p 
+      a(href="sign-up")(style="color: white;")  Sign up 
       h2 
     main
-      form(action="/login", method="POST")
+      form(action="/logged-in", method="POST")
         label(for="email")(style="color: white;")  Email:
         input(type="email", id="email", name="email", required)
         label(for="password")(style="color: white;")  Password:

@@ -9,6 +9,7 @@ app.use(express.static("static"));
 
 // Get the functions in the db.js file to use
 const db = require('./services/db');
+app.use(express.urlencoded({ extended: true }));
 
 // creating a connection to your database: 
 const mysql = require('mysql');
@@ -35,9 +36,45 @@ app.get("/homepage", function(req, res) {
 });
 
 // Running Buddies Login page root
-app.get("/Login", function(req, res) {
+app.get("/login", function(req, res) {
     res.render("login")
 });
+
+app.post('/logged-in', function (req, res) {
+    // Adding a try/catch block which will be useful later when we add to the database
+    try {
+        // Just a console.log for now to check we are receiving the form field values
+        console.log(req.body);
+     } catch (err) {
+         console.error(`Error while adding note `, err.message);
+     }
+     // Just a little output for now
+     res.send('form submitted');
+});
+// Running Buddies Login Post page root
+//app.post("/login", function(req, res) {
+    //es.render("login")
+//});
+
+// Running Buddies sign up page root
+app.get("/sign-up", function(req, res) {
+    res.render("sign-up")
+});
+
+app.post('/signed-up', function (req, res) {
+    // Adding a try/catch block which will be useful later when we add to the database
+    try {
+        // Just a console.log for now to check we are receiving the form field values
+        console.log(req.body);
+     } catch (err) {
+         console.error(`Error while adding note `, err.message);
+     }
+     // Just a little output for now
+     res.send('form submitted');
+});
+//Running Buddies sign up POST page root
+//app.post('/sign-up', function(req, res) {
+//});
 
 // Create a route for root - / TEST
 app.get("/", function(req, res) {
