@@ -1,0 +1,15 @@
+h1(style="color: white;") SIGN UP 
+body(style="background-color: #48D1CC;")
+form(action="/signed-up", method="POST")
+  div
+    label(for="name")(style="color: white;") Name:
+    input(type="text", id="name", name="name", required)
+  div
+    label(for="email")(style="color: white;") Email:
+    input(type="email", id="email", name="email", required)
+  div
+    label(for="password")(style="color: white;") Password:
+    input(type="password", id="password", name="password", required)
+  div   
+   button(type="submit") Sign Up 
+a(href="/login")(style="color: white;") Login 
