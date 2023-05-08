@@ -17,6 +17,7 @@ const mysql = require('mysql');
 app.set( 'view engine', 'pug');
 app.set( 'views', './app/views');
 
+<<<<<<< HEAD
 //This will allow you to access the form data in the req.body object.
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +28,16 @@ app.get("/", function(req, res) {
     var test_data = ['one', 'two', 'three', 'four'];
     // Send the array through to the template as a variable called data
     res.render("index", {'title':'My index page', 'heading':'My heading', 'data':test_data});
+=======
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'runningbuddiesgroup',
+  password : 'password',
+  database : 'sw2-runningbuddies'
+>>>>>>> origin/main
 });
 
 // Running Buddies Homepage root
@@ -34,9 +45,15 @@ app.get("/homepage", function(req, res) {
     res.render("homepage")
 });
 
+<<<<<<< HEAD
 // Runing Buddies Login page root
 app.get("/Login", function(req, res) {
     res.render("login")
+=======
+// Create a route for root - / TEST
+app.get("/", function(req, res) {
+    res.send("Index");
+>>>>>>> origin/main
 });
 
 //1. Displaying All Runners 
@@ -48,7 +65,7 @@ app.get("/all-runners", function (req, res) {
     // Call the 'query' method of the database connection object to execute the SQL query
     db.query(sql).then(results => {
         console.log(results);
-        // Send the results as a JSON response to the client
+        // Send the results as a JSON response to the client.
         res.json(results);
     });
 });
@@ -79,8 +96,29 @@ app.get("/all-runners-formatted", function(req, res) {
     });
 });
 
+app.get("/match-user", function(req, res) {
+    var sql = 'SELECT DISTINCT user_city FROM users';
+    db.query(sql).then(results => {
+      // Pass the results to the Pug template
+      res.render('match-user', { cities: results });
+    });
+  });
+  
+  // Route to handle the form submission
+  app.post("/match-user", function(req, res) {
+    var city = req.body.user_city;
+    var sql = "SELECT * FROM users WHERE user_city = ?";
+    db.query(sql, [city]).then(results => {
+      // Pass the results to the Pug template
+      res.render('matched-user', { users: results });
+    });
+  });
+
+
+
 //Display single runner page with asynchronous fucntion
 //that waits for the response.
+<<<<<<< HEAD
 //app.get("/single-runner/:user_ID", function(req, res) {
     //var ruID = req.params.user_ID;
     //var ruSql = "SELECT user_city, user_street, user_age, \
@@ -96,6 +134,17 @@ app.get("/all-runners-formatted", function(req, res) {
         //output += '<div><b>Gender: </b>' + results[0].user_gender + '</div>';
         //output += '<div><b>Fitness Level: </b>' + results[0].user_FitnessLevel + '</div>';
         //res.send(output);
+=======
+app.get("/single-runner/:user_ID", function(req, res) {
+    var UserID = req.params.user_ID;
+    var sql = "SELECT user_city, user_street, user_age, \
+    user_gender, user_FitnessLevel FROM users\
+    WHERE user_ID = ?"
+    db.query(sql, [UserID]).then(results => {
+        console.log(results);
+        // Pass the results object to the Pug template
+        res.render('users', { users: results[0] });
+>>>>>>> origin/main
 
     //});
 

@@ -1,6 +1,7 @@
 extends layout
 
 block content
+<<<<<<< HEAD
   h1(style="color: white;")  Matched Users
   a(href="homepage")(style="color: white;")  Home
   body(style="background-color: #48D1CC;")
@@ -9,6 +10,12 @@ block content
 
   if users.length
     table.table(style="color: white;") 
+=======
+  h1 Matched Users
+
+  if users.length
+    table.table
+>>>>>>> origin/main
       thead
         tr
           th User ID
